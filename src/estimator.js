@@ -16,7 +16,7 @@ const covid19ImpactEstimator = (data) => {
         break;
       default:
         break;
-    };
+    }
     return mulFact;
   };
 
