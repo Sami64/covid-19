@@ -51,8 +51,8 @@ const covid19ImpactEstimator = (data) => {
       infectionsByRequestedTime: (input.reportedCases * 10) * fM,
       severeCasesByRequestedTime: 0.15 * (rI * fM),
       hospitalBedsByRequestedTime: Math.trunc(0.35 * input.totalHospitalBeds - 0.15 * (rI * fM)),
-      casesForICUByRequestedTime: 0.05 * ((input.reportedCases * 10) * fM),
-      casesForVentilatorsByRequestedTime: 0.02 * ((input.reportedCases * 10) * fM),
+      casesForICUByRequestedTime: Math.trunc(0.05 * ((input.reportedCases * 10) * fM)),
+      casesForVentilatorsByRequestedTime: Math.trunc(0.02 * ((input.reportedCases * 10) * fM)),
       dollarsInFlight: Math.trunc(((rI * fM) * avgPIncome * avgDIncome) / pCal())
     },
     severeImpact: {
@@ -60,8 +60,8 @@ const covid19ImpactEstimator = (data) => {
       infectionsByRequestedTime: (input.reportedCases * 50) * fM,
       severeCasesByRequestedTime: 0.15 * (rS * fM),
       hospitalBedsByRequestedTime: Math.trunc(0.35 * input.totalHospitalBeds - 0.15 * (rS * fM)),
-      casesForICUByRequestedTime: 0.05 * ((input.reportedCases * 50) * fM),
-      casesForVentilatorsByRequestedTime: 0.02 * ((input.reportedCases * 50) * fM),
+      casesForICUByRequestedTime: Math.trunc(0.05 * ((input.reportedCases * 50) * fM)),
+      casesForVentilatorsByRequestedTime: Math.trunc(0.02 * ((input.reportedCases * 50) * fM)),
       dollarsInFlight: Math.trunc(((rS * fM) * avgPIncome * avgDIncome) / pCal())
     }
   };
