@@ -1,5 +1,4 @@
 const covid19ImpactEstimator = (data) => {
-  const input = data;
 
   // Challenge 1
   const factor = () => {
@@ -21,7 +20,7 @@ const covid19ImpactEstimator = (data) => {
   };
 
   return {
-    data: input,
+    data,
     impact: {
       currentlyInfected: data.reportedCases * 10,
       infectionsByRequestedTime: (data.reportedCases * 10) * (2 ** factor())
