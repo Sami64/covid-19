@@ -6,6 +6,6 @@ const estimates = estimator.default();
 
 router.get('/', (req, res) => {
   res.send(estimates);
-})
+});
 
 module.exports = router;
