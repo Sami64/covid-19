@@ -35,7 +35,11 @@ const covid19ImpactEstimator = (data) => {
       default:
         break;
     }
+    return dWM;
   };
+
+  let avgDIncome = input.region.avgDailyIncomeInUSD;
+  let avgPIncome = input.region.avgDailyIncomePopulation;
 
   return {
     data: input,
@@ -46,7 +50,7 @@ const covid19ImpactEstimator = (data) => {
       hospitalBedsRequestedByTime: Math.trunc(0.35 * input.totalHospitalBeds),
       casesForICUByRequestedTime: 0.05 * ((input.reportedCases * 10) * (2 ** factor())),
       casesForVentilatorsByRequestedTime: 0.02 * ((input.reportedCases * 10) * (2 ** factor())),
-      dollarsInFlight: (((input.reportedCases * 10) * (2 ** factor())) * input.region.avgDailyIncomePopulation) * input.region.avgDailyIncomeInUSD * periodCalc()
+      dollarsInFlight: (((input.reportedCases * 10) * (2 ** factor())) * avgPIncome) * avgDIncome * periodCalc()
     },
     severeImpact: {
       currentlyInfected: input.reportedCases * 50,
@@ -55,7 +59,7 @@ const covid19ImpactEstimator = (data) => {
       hospitalBedsRequestedByTime: Math.trunc(0.35 * input.totalHospitalBeds),
       casesForICUByRequestedTime: 0.05 * ((input.reportedCases * 50) * (2 ** factor())),
       casesForVentilatorsByRequestedTime: 0.02 * ((input.reportedCases * 50) * (2 ** factor())),
-      dollarsInFlight: (((input.reportedCases * 50) * (2 ** factor())) * input.region.avgDailyIncomePopulation) * input.region.avgDailyIncomeInUSD * periodCalc()
+      dollarsInFlight: (((input.reportedCases * 50) * (2 ** factor())) * avgPIncome) * avgDIncome * periodCalc()
     }
   };
 };
