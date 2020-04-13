@@ -18,6 +18,7 @@ const covid19ImpactEstimator = (data) => {
     }
     return mulFact;
   };
+  const factMulti = (Math.trunc(2 ** factor()));
 
   // Challenge 3
   const periodCalc = () => {
@@ -38,28 +39,28 @@ const covid19ImpactEstimator = (data) => {
     return dWM;
   };
 
-  let avgDIncome = input.region.avgDailyIncomeInUSD;
-  let avgPIncome = input.region.avgDailyIncomePopulation;
+  const avgDIncome = input.region.avgDailyIncomeInUSD;
+  const avgPIncome = input.region.avgDailyIncomePopulation;
 
   return {
     data: input,
     impact: {
       currentlyInfected: input.reportedCases * 10,
-      infectionsByRequestedTime: (input.reportedCases * 10) * (2 ** factor()),
-      severeCasesRequestedByTime: 0.15 * ((input.reportedCases * 10) * (2 ** factor())),
+      infectionsByRequestedTime: (input.reportedCases * 10) * factMulti,
+      severeCasesRequestedByTime: 0.15 * ((input.reportedCases * 10) * factMulti),
       hospitalBedsRequestedByTime: Math.trunc(0.35 * input.totalHospitalBeds),
-      casesForICUByRequestedTime: 0.05 * ((input.reportedCases * 10) * (2 ** factor())),
-      casesForVentilatorsByRequestedTime: 0.02 * ((input.reportedCases * 10) * (2 ** factor())),
-      dollarsInFlight: (((input.reportedCases * 10) * (2 ** factor())) * avgPIncome) * avgDIncome * periodCalc()
+      casesForICUByRequestedTime: 0.05 * ((input.reportedCases * 10) * factMulti),
+      casesForVentilatorsByRequestedTime: 0.02 * ((input.reportedCases * 10) * factMulti),
+      dollarsInFlight: (((input.reportedCases * 10) * factMulti) * avgPIncome) * avgDIncome * periodCalc()
     },
     severeImpact: {
       currentlyInfected: input.reportedCases * 50,
-      infectionsByRequestedTime: (input.reportedCases * 50) * (2 ** factor()),
-      severeCasesRequestedByTime: 0.15 * ((input.reportedCases * 50) * (2 ** factor())),
+      infectionsByRequestedTime: (input.reportedCases * 50) * factMulti,
+      severeCasesRequestedByTime: 0.15 * ((input.reportedCases * 50) * factMulti),
       hospitalBedsRequestedByTime: Math.trunc(0.35 * input.totalHospitalBeds),
-      casesForICUByRequestedTime: 0.05 * ((input.reportedCases * 50) * (2 ** factor())),
-      casesForVentilatorsByRequestedTime: 0.02 * ((input.reportedCases * 50) * (2 ** factor())),
-      dollarsInFlight: (((input.reportedCases * 50) * (2 ** factor())) * avgPIncome) * avgDIncome * periodCalc()
+      casesForICUByRequestedTime: 0.05 * ((input.reportedCases * 50) * factMulti),
+      casesForVentilatorsByRequestedTime: 0.02 * ((input.reportedCases * 50) * factMulti),
+      dollarsInFlight: (((input.reportedCases * 50) * factMulti) * avgPIncome) * avgDIncome * periodCalc()
     }
   };
 };
