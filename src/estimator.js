@@ -25,13 +25,13 @@ const covid19ImpactEstimator = (data) => {
     let dWM;
     switch (input.periodType) {
       case 'days':
-        dWM = input.timeToElapse;
+        dWM = Math.trunc(input.timeToElapse);
         break;
       case 'weeks':
-        dWM = input.timeToElapse * 7;
+        dWM = Math.trunc(input.timeToElapse * 7);
         break;
       case 'months':
-        dWM = input.timeToElapse * 30;
+        dWM = Math.trunc(input.timeToElapse * 30);
         break;
       default:
         break;
@@ -53,7 +53,7 @@ const covid19ImpactEstimator = (data) => {
       hospitalBedsByRequestedTime: Math.trunc(0.35 * input.totalHospitalBeds - 0.15 * (rI * fM)),
       casesForICUByRequestedTime: 0.05 * ((input.reportedCases * 10) * fM),
       casesForVentilatorsByRequestedTime: 0.02 * ((input.reportedCases * 10) * fM),
-      dollarsInFlight: (((input.reportedCases * 10) * fM) * avgPIncome) * avgDIncome * pCal()
+      dollarsInFlight: Math.trunc(((rI * fM) * avgPIncome * avgDIncome) / pCal())
     },
     severeImpact: {
       currentlyInfected: input.reportedCases * 50,
@@ -62,7 +62,7 @@ const covid19ImpactEstimator = (data) => {
       hospitalBedsByRequestedTime: Math.trunc(0.35 * input.totalHospitalBeds - 0.15 * (rS * fM)),
       casesForICUByRequestedTime: 0.05 * ((input.reportedCases * 50) * fM),
       casesForVentilatorsByRequestedTime: 0.02 * ((input.reportedCases * 50) * fM),
-      dollarsInFlight: (((input.reportedCases * 50) * fM) * avgPIncome) * avgDIncome * pCal()
+      dollarsInFlight: Math.trunc(((rS * fM) * avgPIncome * avgDIncome) / pCal())
     }
   };
 };
