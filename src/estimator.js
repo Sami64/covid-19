@@ -42,14 +42,15 @@ const covid19ImpactEstimator = (data) => {
   const avgDIncome = input.region.avgDailyIncomeInUSD;
   const avgPIncome = input.region.avgDailyIncomePopulation;
   const rS = (input.reportedCases * 50);
+  const rI = (input.reportedCases * 10);
 
   return {
     data: input,
     impact: {
       currentlyInfected: input.reportedCases * 10,
       infectionsByRequestedTime: (input.reportedCases * 10) * fM,
-      severeCasesByRequestedTime: 0.15 * ((input.reportedCases * 10) * fM),
-      hospitalBedsByRequestedTime: Math.trunc(0.35 * input.totalHospitalBeds),
+      severeCasesByRequestedTime: 0.15 * (rI * fM),
+      hospitalBedsByRequestedTime: Math.trunc(0.35 * input.totalHospitalBeds) - 0.15 * (rI * fM),
       casesForICUByRequestedTime: 0.05 * ((input.reportedCases * 10) * fM),
       casesForVentilatorsByRequestedTime: 0.02 * ((input.reportedCases * 10) * fM),
       dollarsInFlight: (((input.reportedCases * 10) * fM) * avgPIncome) * avgDIncome * pCal()
