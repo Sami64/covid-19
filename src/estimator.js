@@ -5,13 +5,13 @@ const covid19ImpactEstimator = (data) => {
     let mulFact;
     switch (input.periodType) {
       case 'days':
-        mulFact = input.timeToElapse / 3;
+        mulFact = Math.trunc(input.timeToElapse / 3);
         break;
       case 'weeks':
-        mulFact = (input.timeToElapse * 7) / 3;
+        mulFact = Math.trunc((input.timeToElapse * 7) / 3);
         break;
       case 'months':
-        mulFact = (input.timeToElapse * 30) / 3;
+        mulFact = Math.trunc((input.timeToElapse * 30) / 3);
         break;
       default:
         break;
