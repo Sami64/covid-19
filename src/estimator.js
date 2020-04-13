@@ -19,15 +19,43 @@ const covid19ImpactEstimator = (data) => {
     return mulFact;
   };
 
+  // Challenge 3
+  const periodCalc = () => {
+    let dWM;
+    switch (input.periodType) {
+      case 'days':
+        dWM = input.timeToElapse;
+        break;
+      case 'weeks':
+        dWM = input.timeToElapse * 7;
+        break;
+      case 'months':
+        dWM = input.timeToElapse * 30;
+        break;
+      default:
+        break;
+    }
+  };
+
   return {
     data: input,
     impact: {
       currentlyInfected: input.reportedCases * 10,
-      infectionsByRequestedTime: (input.reportedCases * 10) * (2 ** factor())
+      infectionsByRequestedTime: (input.reportedCases * 10) * (2 ** factor()),
+      severeCasesRequestedByTime: 0.15 * ((input.reportedCases * 10) * (2 ** factor())),
+      hospitalBedsRequestedByTime: Math.trunc(0.35 * input.totalHospitalBeds),
+      casesForICUByRequestedTime: 0.05 * ((input.reportedCases * 10) * (2 ** factor())),
+      casesForVentilatorsByRequestedTime: 0.02 * ((input.reportedCases * 10) * (2 ** factor())),
+      dollarsInFlight: (((input.reportedCases * 10) * (2 ** factor())) * input.region.avgDailyIncomePopulation) * input.region.avgDailyIncomeInUSD * periodCalc()
     },
     severeImpact: {
       currentlyInfected: input.reportedCases * 50,
-      infectionsByRequestedTime: (input.reportedCases * 50) * (2 ** factor())
+      infectionsByRequestedTime: (input.reportedCases * 50) * (2 ** factor()),
+      severeCasesRequestedByTime: 0.15 * ((input.reportedCases * 50) * (2 ** factor())),
+      hospitalBedsRequestedByTime: Math.trunc(0.35 * input.totalHospitalBeds),
+      casesForICUByRequestedTime: 0.05 * ((input.reportedCases * 50) * (2 ** factor())),
+      casesForVentilatorsByRequestedTime: 0.02 * ((input.reportedCases * 50) * (2 ** factor())),
+      dollarsInFlight: (((input.reportedCases * 50) * (2 ** factor())) * input.region.avgDailyIncomePopulation) * input.region.avgDailyIncomeInUSD * periodCalc()
     }
   };
 };
