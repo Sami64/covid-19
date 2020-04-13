@@ -21,7 +21,7 @@ const covid19ImpactEstimator = (data) => {
   const factMulti = (Math.trunc(2 ** factor()));
 
   // Challenge 3
-  const periodCalc = () => {
+  const pCal = () => {
     let dWM;
     switch (input.periodType) {
       case 'days':
@@ -51,7 +51,7 @@ const covid19ImpactEstimator = (data) => {
       hospitalBedsRequestedByTime: Math.trunc(0.35 * input.totalHospitalBeds),
       casesForICUByRequestedTime: 0.05 * ((input.reportedCases * 10) * factMulti),
       casesForVentilatorsByRequestedTime: 0.02 * ((input.reportedCases * 10) * factMulti),
-      dollarsInFlight: (((input.reportedCases * 10) * factMulti) * avgPIncome) * avgDIncome * periodCalc()
+      dollarsInFlight: (((input.reportedCases * 10) * factMulti) * avgPIncome) * avgDIncome * pCal()
     },
     severeImpact: {
       currentlyInfected: input.reportedCases * 50,
@@ -60,7 +60,7 @@ const covid19ImpactEstimator = (data) => {
       hospitalBedsRequestedByTime: Math.trunc(0.35 * input.totalHospitalBeds),
       casesForICUByRequestedTime: 0.05 * ((input.reportedCases * 50) * factMulti),
       casesForVentilatorsByRequestedTime: 0.02 * ((input.reportedCases * 50) * factMulti),
-      dollarsInFlight: (((input.reportedCases * 50) * factMulti) * avgPIncome) * avgDIncome * periodCalc()
+      dollarsInFlight: (((input.reportedCases * 50) * factMulti) * avgPIncome) * avgDIncome * pCal()
     }
   };
 };
