@@ -1,16 +1,17 @@
 const covid19ImpactEstimator = (data) => {
+  const input = data;
   // Challenge 1
   const factor = () => {
     let mulFact;
-    switch (data.periodType) {
+    switch (input.periodType) {
       case 'days':
-        mulFact = data.timeToElapse / 3;
+        mulFact = input.timeToElapse / 3;
         break;
       case 'weeks':
-        mulFact = (data.timeToElapse * 7) / 3;
+        mulFact = (input.timeToElapse * 7) / 3;
         break;
       case 'months':
-        mulFact = (data.timeToElapse * 30) / 3;
+        mulFact = (input.timeToElapse * 30) / 3;
         break;
       default:
         break;
@@ -19,14 +20,14 @@ const covid19ImpactEstimator = (data) => {
   };
 
   return {
-    data,
+    data: input,
     impact: {
-      currentlyInfected: data.reportedCases * 10,
-      infectionsByRequestedTime: (data.reportedCases * 10) * (2 ** factor)
+      currentlyInfected: input.reportedCases * 10,
+      infectionsByRequestedTime: (input.reportedCases * 10) * (2 ** factor())
     },
     severeImpact: {
-      currentlyInfected: data.reportedCases * 50,
-      infectionsByRequestedTime: (data.reportedCases * 50) * (2 ** factor)
+      currentlyInfected: input.reportedCases * 50,
+      infectionsByRequestedTime: (input.reportedCases * 50) * (2 ** factor())
     }
   };
 };
