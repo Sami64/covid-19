@@ -1,5 +1,4 @@
 const covid19ImpactEstimator = (data) => {
-
   // Challenge 1
   const factor = () => {
     let mulFact;
@@ -20,7 +19,7 @@ const covid19ImpactEstimator = (data) => {
   };
 
   return {
-    data: data,
+    data,
     impact: {
       currentlyInfected: data.reportedCases * 10,
       infectionsByRequestedTime: (data.reportedCases * 10) * (2 ** factor())
