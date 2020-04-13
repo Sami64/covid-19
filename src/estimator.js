@@ -47,8 +47,8 @@ const covid19ImpactEstimator = (data) => {
     impact: {
       currentlyInfected: input.reportedCases * 10,
       infectionsByRequestedTime: (input.reportedCases * 10) * factMulti,
-      severeCasesRequestedByTime: 0.15 * ((input.reportedCases * 10) * factMulti),
-      hospitalBedsRequestedByTime: Math.trunc(0.35 * input.totalHospitalBeds),
+      severeCasesByRequestedTime: 0.15 * ((input.reportedCases * 10) * factMulti),
+      hospitalBedsByRequestedTime: Math.trunc(0.35 * input.totalHospitalBeds),
       casesForICUByRequestedTime: 0.05 * ((input.reportedCases * 10) * factMulti),
       casesForVentilatorsByRequestedTime: 0.02 * ((input.reportedCases * 10) * factMulti),
       dollarsInFlight: (((input.reportedCases * 10) * factMulti) * avgPIncome) * avgDIncome * pCal()
@@ -56,8 +56,8 @@ const covid19ImpactEstimator = (data) => {
     severeImpact: {
       currentlyInfected: input.reportedCases * 50,
       infectionsByRequestedTime: (input.reportedCases * 50) * factMulti,
-      severeCasesRequestedByTime: 0.15 * ((input.reportedCases * 50) * factMulti),
-      hospitalBedsRequestedByTime: Math.trunc(0.35 * input.totalHospitalBeds),
+      severeCasesByRequestedTime: 0.15 * ((input.reportedCases * 50) * factMulti),
+      hospitalBedsByRequestedTime: Math.trunc(0.35 * input.totalHospitalBeds),
       casesForICUByRequestedTime: 0.05 * ((input.reportedCases * 50) * factMulti),
       casesForVentilatorsByRequestedTime: 0.02 * ((input.reportedCases * 50) * factMulti),
       dollarsInFlight: (((input.reportedCases * 50) * factMulti) * avgPIncome) * avgDIncome * pCal()
