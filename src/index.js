@@ -92,8 +92,8 @@ app.route('/api/v1/on-covid-19/xml')
 
 app.route('/api/v1/on-covid-19/logs')
   .get((req, res) => {
-    fs.readFile(path.join(__dirname, 'covidLogs.log'), function(err, data) {
-      if(err) throw err;
+    fs.readFile(path.join(__dirname, 'covidLogs.log'), (err, data) => {
+      if (err) throw err;
       res.send(data);
     });
   });
