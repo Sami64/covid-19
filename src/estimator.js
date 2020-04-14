@@ -45,7 +45,7 @@ const covid19ImpactEstimator = (data) => {
   const rI = (input.reportedCases * 10);
 
   return {
-    data,
+    data: input,
     impact: {
       currentlyInfected: input.reportedCases * 10,
       infectionsByRequestedTime: (input.reportedCases * 10) * fM,
