@@ -17,6 +17,7 @@ app.route('/api/v1/on-covid-19')
   .post((req, res) => {
     const results = estimate(req.body);
     res.send({
+      data: req.body,
       impact: {
         currentlyInfected: results.impact.currentlyInfected,
         infectionsByRequestedTime: results.impact.infectionsByRequestedTime,
@@ -42,6 +43,7 @@ app.route('/api/v1/on-covid-19/json')
   .post((req, res) => {
     const results = estimate(req.body);
     res.send({
+      data: req.body,
       impact: {
         currentlyInfected: results.impact.currentlyInfected,
         infectionsByRequestedTime: results.impact.infectionsByRequestedTime,
@@ -68,6 +70,7 @@ app.route('/api/v1/on-covid-19/xml')
     const results = estimate(req.body);
     const options = { compact: true, ignoreComment: true, spaces: 4 };
     const jsRes = {
+      data: req.body,
       impact: {
         currentlyInfected: results.impact.currentlyInfected,
         infectionsByRequestedTime: results.impact.infectionsByRequestedTime,
